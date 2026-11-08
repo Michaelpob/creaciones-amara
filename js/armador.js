@@ -7,11 +7,11 @@
 
   var DATA = {
     ocasion: [
-      ['Cumpleaños', '🎂'], ['Aniversario', '💍'], ['Amor y amistad', '💕'], ['Día de la madre', '🌷'],
+      ['Navidad', '🎄'], ['Cumpleaños', '🎂'], ['Aniversario', '💍'], ['Amor y amistad', '💕'], ['Día de la madre', '🌷'],
       ['Día del padre', '👔'], ['Grado', '🎓'], ['Otra', '✨']
     ],
     producto: [
-      ['Desayunos sorpresa', '🥐'], ['Carteleras', '📌'], ['Anchetas personalizadas', '🧺'], ['Ramos de rosas y girasoles', '💐'],
+      ['Detalle navideño', '🎄'], ['Desayunos sorpresa', '🥐'], ['Carteleras', '📌'], ['Anchetas personalizadas', '🧺'], ['Ramos de rosas y girasoles', '💐'],
       ['Cajas personalizadas', '🎁'], ['Llaveros personalizados', '🔑'], ['Cuadros personalizados', '🖼️'], ['Fotos polaroid', '📸']
     ],
     colores: [

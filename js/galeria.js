@@ -3,8 +3,10 @@
   'use strict';
   var A = window.Amara;
   var dlg = document.getElementById('lightbox');
-  var items = Array.prototype.slice.call(document.querySelectorAll('#wall .polaroid'));
-  if (!dlg || !items.length) return;
+  // Cada contenedor con data-lb es un grupo de fotos (galería, Navidad…)
+  var all = Array.prototype.slice.call(document.querySelectorAll('[data-lb] [data-full]'));
+  if (!dlg || !all.length) return;
+  var items = [], data = [];
 
   var img = document.getElementById('lb-img');
   var src = document.getElementById('lb-src');
@@ -14,14 +16,16 @@
   var current = 0, opener = null;
   var WEBP = document.createElement('canvas').toDataURL('image/webp').indexOf('image/webp') > -1;
 
-  var data = items.map(function (b) {
+  function describe(b) {
     var thumb = b.querySelector('img');
+    var capEl = b.querySelector('.cap');
     return {
       base: b.getAttribute('data-full'),
-      w: b.getAttribute('data-w'), h: b.getAttribute('data-h'),
-      alt: thumb.alt, cap: b.querySelector('.cap').textContent
+      w: b.getAttribute('data-w') || thumb.getAttribute('width'),
+      h: b.getAttribute('data-h') || thumb.getAttribute('height'),
+      alt: thumb.alt, cap: b.getAttribute('data-cap') || (capEl ? capEl.textContent : '')
     };
-  });
+  }
 
   function show(i, dir) {
     current = (i + data.length) % data.length;
@@ -44,8 +48,11 @@
     pre.src = n.base + (WEBP ? '.webp' : '.jpg');
   }
 
-  function open(i) {
-    opener = items[i];
+  function open(btn) {
+    items = Array.prototype.slice.call(btn.closest('[data-lb]').querySelectorAll('[data-full]'));
+    data = items.map(describe);
+    var i = items.indexOf(btn);
+    opener = btn;
     show(i, 0);
     if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', '');
     document.getElementById('lb-close').focus();
@@ -55,7 +62,7 @@
   }
   dlg.addEventListener('close', function () { if (opener) opener.focus({ preventScroll: true }); });
 
-  items.forEach(function (b, i) { b.addEventListener('click', function () { open(i); }); });
+  all.forEach(function (b) { b.addEventListener('click', function () { open(b); }); });
   document.getElementById('lb-close').addEventListener('click', close);
   document.getElementById('lb-prev').addEventListener('click', function () { show(current - 1, -1); });
   document.getElementById('lb-next').addEventListener('click', function () { show(current + 1, 1); });

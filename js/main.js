@@ -93,6 +93,7 @@
 
   /* ---------- Enlaces de WhatsApp ---------- */
   document.querySelectorAll('[data-wa]').forEach(function (a) { a.href = waLink(MSG_GENERAL); });
+  document.querySelectorAll('[data-wa-msg]').forEach(function (a) { a.href = waLink(a.getAttribute('data-wa-msg')); });
 
   /* ---------- Año automático ---------- */
   var year = document.getElementById('year');

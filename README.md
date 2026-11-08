@@ -26,6 +26,12 @@ assets/favicon.svg  Ícono de corazón
 
 También puedes editar un archivo directo en github.com (ícono del lápiz → "Commit changes").
 
+### Sección de Navidad
+
+La sección `#navidad` (justo después del inicio) es de temporada. Para quitarla después de diciembre,
+borra en `index.html` el bloque `<!-- NAVIDAD (temporada) -->`, el enlace "Navidad" del menú y la píldora
+`xmas-pill` del inicio.
+
 ### Cambiar o agregar fotos
 
 Usa fotos de máximo 1200 px de ancho. Para cada foto se usan dos formatos: `.webp` y `.jpg`
